@@ -53,7 +53,7 @@ window.onload= function(){
             }     
         }
     }
-
+    
     const userAction= (elem,index) =>{
         console.log(elem.innerText)
         if(elem.innerText !== 'X' || elemm.innerText !== 'O'){
@@ -71,5 +71,16 @@ window.onload= function(){
         }
 
     }
+
+    button.addEventListener('click', ()=>{
+        poslst=['', '', '', '', '', '', '', '', ''];
+        status.innerHTML= 'Move your mouse over a square and click to play an X or an O.'
+        status.classList.remove('you-won');
+        ele.forEach(elem =>{
+            elem.innerText ='';
+            elem.classList.remove('X');
+            elem.classList.remove('O');
+        });
+    });
 }
 
