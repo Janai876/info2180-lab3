@@ -24,5 +24,52 @@ window.onload= function(){
     for(let a=0; a<=8; a++){
         ele[a].setAttribute("class","square");
     }
+
+    ele.forEach( (elem, index) => {
+        elem.addEventListener('click', () => userAction(elem, index));
+        elem.addEventListener('mouseover', function(){
+            elem.classList.add('hover');
+        });
+        elem.addEventListener('mouseout', function(){
+            elem.classList.remove('hover');
+        });
+    });
+
+    
+    function checkWin(){
+        for(let i=0; i<=7; i++){
+            const win = winningConditions[i];
+ 
+            const pos1= poslst[win[0]];
+            const pos2 = poslst[win[1]];
+            const pos3 = poslst[win[2]];
+            if (pos1 === ''|| pos2 === ''|| pos3===''){
+                continue;
+            }  
+            if (pos1=== pos2 && pos2 === pos3){
+                status.innerHTML= 'Congratulations! ' + pos1 +' is the winner';
+                status.classList.add('you-won');
+                break;
+            }     
+        }
+    }
+
+    const userAction= (elem,index) =>{
+        console.log(elem.innerText)
+        if(elem.innerText !== 'X' || elemm.innerText !== 'O'){
+            elem.innerText= play;
+            elem.classList.add(play);
+            poslst[index]=play;
+            console.log(poslst);
+            checkWin();
+            if(play === 'X'){
+                play='O';
+
+            }else{
+                play='X';
+            }
+        }
+
+    }
 }
 
